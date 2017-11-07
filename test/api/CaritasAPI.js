@@ -1,26 +1,26 @@
 if (typeof module !== 'undefined' && module.exports) {
 	var common = require('../common');
-	var lisk = common.lisk;
+	var caritas = common.caritas;
 	var sinon = common.sinon;
 	process.env.NODE_ENV = 'test';
 }
 
-describe('Lisk.api()', function () {
+describe('Caritas.api()', function () {
 
-	var LSK = lisk.api();
+	var LSK = caritas.api();
 
-	describe('lisk.api()', function () {
+	describe('caritas.api()', function () {
 
-		it('should create a new instance when using lisk.api()', function () {
+		it('should create a new instance when using caritas.api()', function () {
 			(LSK).should.be.ok();
 		});
 
-		it('new lisk.api() should be Object', function () {
+		it('new caritas.api() should be Object', function () {
 			(LSK).should.be.type('object');
 		});
 
 		it('should use testnet peer for testnet settings', function () {
-			var TESTLSK = lisk.api({ testnet: true });
+			var TESTLSK = caritas.api({ testnet: true });
 
 			(TESTLSK.port).should.be.equal(7000);
 			(TESTLSK.testnet).should.be.equal(true);
@@ -51,7 +51,7 @@ describe('Lisk.api()', function () {
 				'Content-Type': 'application/json',
 				'nethash': 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511',
 				'broadhash': 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511',
-				'os': 'lisk-js-api',
+				'os': 'caritas-js-api',
 				'version': '1.0.0',
 				'minVersion': '>=0.5.0',
 				'port': 8000
@@ -66,7 +66,7 @@ describe('Lisk.api()', function () {
 				'Content-Type': 'application/json',
 				'nethash': 'da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba',
 				'broadhash': 'da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba',
-				'os': 'lisk-js-api',
+				'os': 'caritas-js-api',
 				'version': '1.0.0',
 				'minVersion': '>=0.5.0',
 				'port': 7000
@@ -81,12 +81,12 @@ describe('Lisk.api()', function () {
 				'Content-Type': 'application/json',
 				'nethash': '123',
 				'broadhash': 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511',
-				'os': 'lisk-js-api',
+				'os': 'caritas-js-api',
 				'version': '0.0.0a',
 				'minVersion': '>=0.5.0',
 				'port': 8000
 			};
-			var LSKNethash = lisk.api({ nethash: '123' });
+			var LSKNethash = caritas.api({ nethash: '123' });
 
 			(LSKNethash.nethash).should.eql(NetHash);
 		});
@@ -95,17 +95,17 @@ describe('Lisk.api()', function () {
 	describe('#setTestnet', function () {
 
 		it('should set to testnet', function () {
-			var LISK = lisk.api();
-			LISK.setTestnet(true);
+			var CARITAS = caritas.api();
+            CARITAS.setTestnet(true);
 
-			(LISK.testnet).should.be.true;
+			(CARITAS.testnet).should.be.true;
 		});
 
 		it('should set to mainnet', function () {
-			var LISK = lisk.api();
-			LISK.setTestnet(false);
+			var CARITAS = caritas.api();
+            CARITAS.setTestnet(false);
 
-			(LISK.testnet).should.be.false;
+			(CARITAS.testnet).should.be.false;
 		});
 	});
 
@@ -128,9 +128,9 @@ describe('Lisk.api()', function () {
 	describe('#selectNode', function () {
 
 		it('should return the node from initial settings when set', function () {
-			var LiskUrlInit = lisk.api({ port: 7000, node: 'localhost', ssl: true, randomPeer: false });
+			var CaritasUrlInit = caritas.api({ port: 7000, node: 'localhost', ssl: true, randomPeer: false });
 
-			(LiskUrlInit.selectNode()).should.be.equal('localhost');
+			(CaritasUrlInit.selectNode()).should.be.equal('localhost');
 		});
 	});
 
@@ -154,17 +154,17 @@ describe('Lisk.api()', function () {
 	describe('#getFullUrl', function () {
 
 		it('should give the full url inclusive port', function () {
-			var LiskUrlInit = lisk.api({ port: 7000, node: 'localhost', ssl: false });
+			var CaritasUrlInit = caritas.api({ port: 7000, node: 'localhost', ssl: false });
 			var fullUrl = 'http://localhost:7000';
 
-			(LiskUrlInit.getFullUrl()).should.be.equal(fullUrl);
+			(CaritasUrlInit.getFullUrl()).should.be.equal(fullUrl);
 		});
 
 		it('should give the full url without port and with SSL', function () {
-			var LiskUrlInit = lisk.api({ port: '', node: 'localhost', ssl: true });
+			var CaritasUrlInit = caritas.api({ port: '', node: 'localhost', ssl: true });
 			var fullUrl = 'https://localhost';
 
-			(LiskUrlInit.getFullUrl()).should.be.equal(fullUrl);
+			(CaritasUrlInit.getFullUrl()).should.be.equal(fullUrl);
 		});
 	});
 
@@ -353,7 +353,7 @@ describe('Lisk.api()', function () {
 
 		it('should not accept falsy options like undefined', function (done) {
 			try {
-				lisk.api().sendRequest('delegates/', {limit:undefined}, function () {});
+                caritas.api().sendRequest('delegates/', {limit:undefined}, function () {});
 			} catch (e) {
 				(e.message).should.be.equal('parameter value "limit" should not be undefined');
 				done();
@@ -362,7 +362,7 @@ describe('Lisk.api()', function () {
 
 		it('should not accept falsy options like NaN', function (done) {
 			try {
-				lisk.api().sendRequest('delegates/', {limit:NaN}, function () {});
+                caritas.api().sendRequest('delegates/', {limit:NaN}, function () {});
 			} catch (e) {
 				(e.message).should.be.equal('parameter value "limit" should not be NaN');
 				done();
@@ -376,7 +376,7 @@ describe('Lisk.api()', function () {
 		it('should give the correct parameters for GET requests', function () {
 			var requestType = 'transactions';
 			var options = {blockId: '123', senderId: '123'};
-			var checkRequestAnswer = lisk.api({ node: 'localhost' }).changeRequest(requestType, options);
+			var checkRequestAnswer = caritas.api({ node: 'localhost' }).changeRequest(requestType, options);
 
 			var output = {
 				nethash: '',
@@ -395,7 +395,7 @@ describe('Lisk.api()', function () {
 		it('should give the correct parameters for GET requests with parameters', function () {
 			var requestType = 'delegates/search/';
 			var options = {q: 'oliver'};
-			var checkRequestAnswer = lisk.api({ node: 'localhost' }).changeRequest(requestType, options);
+			var checkRequestAnswer = caritas.api({ node: 'localhost' }).changeRequest(requestType, options);
 
 			var output = {
 				nethash: '',
@@ -413,7 +413,7 @@ describe('Lisk.api()', function () {
 		it('should give the correct parameters for NOACTION requests', function () {
 			var requestType = 'delegates/forging/enable';
 			var options = {secret: '123'};
-			var checkRequestAnswer = lisk.api({ node: 'localhost' }).changeRequest(requestType, options);
+			var checkRequestAnswer = caritas.api({ node: 'localhost' }).changeRequest(requestType, options);
 
 			var output = {
 				nethash: '',
@@ -429,7 +429,7 @@ describe('Lisk.api()', function () {
 		it('should give the correct parameters for POST requests', function () {
 			var requestType = 'accounts/open';
 			var options = {secret: '123'};
-			var checkRequestAnswer = lisk.api({ node: 'localhost' }).changeRequest(requestType, options);
+			var checkRequestAnswer = caritas.api({ node: 'localhost' }).changeRequest(requestType, options);
 
 			var output = {
 				nethash: '',
@@ -445,7 +445,7 @@ describe('Lisk.api()', function () {
 		it('should give the correct parameters for PUT requests', function () {
 			var requestType = 'signatures';
 			var options = {secret: '123', secondSecret: '1234'};
-			var checkRequestAnswer = lisk.api({ node: 'localhost' }).changeRequest(requestType, options);
+			var checkRequestAnswer = caritas.api({ node: 'localhost' }).changeRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer.requestParams.transaction).should.have.property('id').which.is.a.String();
@@ -871,7 +871,7 @@ describe('Lisk.api()', function () {
 				bannedPeers: []
 			};
 			var callback = sinon.spy();
-			var LSKnode = lisk.api(options);
+			var LSKnode = caritas.api(options);
 			var secret = 'soap arm custom rhythm october dove chunk force own dial two odor';
 			var secondSecret = 'spider must salmon someone toe chase aware denial same chief else human';
 			var recipient = '10279923186189318946L';
@@ -896,40 +896,40 @@ describe('Lisk.api()', function () {
 	describe('#checkReDial', function () {
 
 		it('should check if all the peers are already banned', function () {
-			(lisk.api().checkReDial()).should.be.equal(true);
+			(caritas.api().checkReDial()).should.be.equal(true);
 		});
 
 		it('should be able to get a new node when current one is not reachable', function (done) {
-			lisk.api({ node: '123', randomPeer: true }).sendRequest('blocks/getHeight', {}, function (result) {
+            caritas.api({ node: '123', randomPeer: true }).sendRequest('blocks/getHeight', {}, function (result) {
 				(result).should.be.type('object');
 				done();
 			});
 		});
 
 		it('should recognize that now all the peers are banned for mainnet', function () {
-			var thisLSK = lisk.api();
-			thisLSK.bannedPeers = lisk.api().defaultPeers;
+			var thisLSK = caritas.api();
+			thisLSK.bannedPeers = caritas.api().defaultPeers;
 
 			(thisLSK.checkReDial()).should.be.equal(false);
 		});
 
 		it('should recognize that now all the peers are banned for testnet', function () {
-			var thisLSK = lisk.api({ testnet: true });
-			thisLSK.bannedPeers = lisk.api().defaultTestnetPeers;
+			var thisLSK = caritas.api({ testnet: true });
+			thisLSK.bannedPeers = caritas.api().defaultTestnetPeers;
 
 			(thisLSK.checkReDial()).should.be.equal(false);
 		});
 
 		it('should recognize that now all the peers are banned for ssl', function () {
-			var thisLSK = lisk.api({ssl: true});
-			thisLSK.bannedPeers = lisk.api().defaultSSLPeers;
+			var thisLSK = caritas.api({ssl: true});
+			thisLSK.bannedPeers = caritas.api().defaultSSLPeers;
 
 			(thisLSK.checkReDial()).should.be.equal(false);
 		});
 
 		it('should stop redial when all the peers are banned already', function (done) {
-			var thisLSK = lisk.api();
-			thisLSK.bannedPeers = lisk.api().defaultPeers;
+			var thisLSK = caritas.api();
+			thisLSK.bannedPeers = caritas.api().defaultPeers;
 			thisLSK.currentPeer = '';
 
 			thisLSK.sendRequest('blocks/getHeight').then(function (e) {
@@ -939,7 +939,7 @@ describe('Lisk.api()', function () {
 		});
 
 		it('should redial to new node when randomPeer is set true', function (done) {
-			var thisLSK = lisk.api({ randomPeer: true, node: '123' });
+			var thisLSK = caritas.api({ randomPeer: true, node: '123' });
 
 			thisLSK.getAccount('12731041415715717263L', function (data) {
 				(data).should.be.ok;
@@ -949,27 +949,27 @@ describe('Lisk.api()', function () {
 		});
 
 		it('should not redial to new node when randomPeer is set to true but unknown nethash provided', function () {
-			var thisLSK = lisk.api({ randomPeer: true, node: '123', nethash: '123' });
+			var thisLSK = caritas.api({ randomPeer: true, node: '123', nethash: '123' });
 
 			(thisLSK.checkReDial()).should.be.equal(false);
 		});
 
 		it('should redial to mainnet nodes when nethash is set and randomPeer is true', function () {
-			var thisLSK = lisk.api({ randomPeer: true, node: '123', nethash: 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511' });
+			var thisLSK = caritas.api({ randomPeer: true, node: '123', nethash: 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511' });
 
 			(thisLSK.checkReDial()).should.be.equal(true);
 			(thisLSK.testnet).should.be.equal(false);
 		});
 
 		it('should redial to testnet nodes when nethash is set and randomPeer is true', function () {
-			var thisLSK = lisk.api({ randomPeer: true, node: '123', nethash: 'da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba' });
+			var thisLSK = caritas.api({ randomPeer: true, node: '123', nethash: 'da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba' });
 
 			(thisLSK.checkReDial()).should.be.equal(true);
 			(thisLSK.testnet).should.be.equal(true);
 		});
 
 		it('should not redial when randomPeer is set false', function () {
-			var thisLSK = lisk.api({ randomPeer: false});
+			var thisLSK = caritas.api({ randomPeer: false});
 
 			(thisLSK.checkReDial()).should.be.equal(false);
 		});
@@ -978,7 +978,7 @@ describe('Lisk.api()', function () {
 	describe('#sendRequest with promise', function () {
 
 		it('should be able to use sendRequest as a promise for GET', function (done) {
-			lisk.api().sendRequest('blocks/getHeight', {}).then(function (result) {
+            caritas.api().sendRequest('blocks/getHeight', {}).then(function (result) {
 				(result).should.be.type('object');
 				(result.success).should.be.equal(true);
 				(result.height).should.be.type('number');
@@ -987,7 +987,7 @@ describe('Lisk.api()', function () {
 		});
 
 		it('should route the request accordingly when request method is POST but GET can be used', function (done) {
-			lisk.api().sendRequest('accounts/open', { secret: '123' }).then(function (result) {
+            caritas.api().sendRequest('accounts/open', { secret: '123' }).then(function (result) {
 				(result).should.be.type('object');
 				(result.account).should.be.ok;
 				done();
@@ -995,7 +995,7 @@ describe('Lisk.api()', function () {
 		});
 
 		it('should respond with error when API call is disabled', function (done) {
-			lisk.api().sendRequest('delegates/forging/enable', { secret: '123' }).then(function (result) {
+            caritas.api().sendRequest('delegates/forging/enable', { secret: '123' }).then(function (result) {
 				(result.error).should.be.equal('Forging not available via offlineRequest');
 				done();
 			});
@@ -1011,7 +1011,7 @@ describe('Lisk.api()', function () {
 				bannedPeers: []
 			};
 
-			var LSKnode = lisk.api(options);
+			var LSKnode = caritas.api(options);
 			var secret = 'soap arm custom rhythm october dove chunk force own dial two odor';
 			var secondSecret = 'spider must salmon someone toe chase aware denial same chief else human';
 			var recipient = '10279923186189318946L';
@@ -1025,7 +1025,7 @@ describe('Lisk.api()', function () {
 		});
 
 		it('should retry timestamp in future failures', function () {
-			var thisLSK = lisk.api();
+			var thisLSK = caritas.api();
 			var successResponse = { body: { success: true } };
 			var futureTimestampResponse = {
 				body: { success: false, message: 'Invalid transaction timestamp. Timestamp is in the future' }
@@ -1046,7 +1046,7 @@ describe('Lisk.api()', function () {
 		});
 
 		it('should not retry timestamp in future failures forever', function () {
-			var thisLSK = lisk.api();
+			var thisLSK = caritas.api();
 			var futureTimestampResponse = {
 				body: { success: false, message: 'Invalid transaction timestamp. Timestamp is in the future' }
 			};
@@ -1067,7 +1067,7 @@ describe('Lisk.api()', function () {
 	describe('#listMultisignatureTransactions', function () {
 
 		it('should list all current not signed multisignature transactions', function (done) {
-			lisk.api().listMultisignatureTransactions(function (result) {
+            caritas.api().listMultisignatureTransactions(function (result) {
 				(result).should.be.ok;
 				(result).should.be.type('object');
 				done();
@@ -1078,7 +1078,7 @@ describe('Lisk.api()', function () {
 	describe('#getMultisignatureTransaction', function () {
 
 		it('should get a multisignature transaction by id', function (done) {
-			lisk.api().getMultisignatureTransaction('123', function (result) {
+            caritas.api().getMultisignatureTransaction('123', function (result) {
 				(result).should.be.ok;
 				(result).should.be.type('object');
 				done();

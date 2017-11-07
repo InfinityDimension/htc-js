@@ -1,11 +1,11 @@
 if (typeof module !== 'undefined' && module.exports) {
 	var common = require('../common');
-	var lisk = common.lisk;
+	var caritas = common.caritas;
 }
 
 describe('crypto.js', function () {
 
-	var crypto = lisk.crypto;
+	var crypto = caritas.crypto;
 
 	it('should be ok', function () {
 		(crypto).should.be.ok;

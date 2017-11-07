@@ -1,11 +1,11 @@
 if (typeof module !== 'undefined' && module.exports) {
 	var common = require('../common');
-	var lisk = common.lisk;
+	var caritas = common.caritas;
 }
 
 describe('ParseOfflineRequests', function () {
 
-	var LSK = lisk.api();
+	var LSK = caritas.api();
 
 	describe('#httpGETPUTorPOST', function () {
 
@@ -103,8 +103,8 @@ describe('ParseOfflineRequests', function () {
 		it.skip('should route dapps requests correctly', function () {
 			var options = {
 				category: '0',
-				name: 'Lisk Guestbook',
-				description: 'The official Lisk guestbook',
+				name: 'Caritas Guestbook',
+				description: 'The official Caritas guestbook',
 				tags: 'blockchain guestbook',
 				type: '0',
 				link: 'https://github.com/MaxKK/guestbookDapp/archive/master.zip',
@@ -112,7 +112,7 @@ describe('ParseOfflineRequests', function () {
 				secret: '123'
 			};
 
-			var checkRequestRouting = lisk.api().parseOfflineRequests('dapps', options);
+			var checkRequestRouting = caritas.api().parseOfflineRequests('dapps', options);
 
 			(checkRequestRouting.requestMethod).should.be.equal('PUT');
 			// (checkRequestRouting.checkOfflineRequestBefore().requestMethod).should.be.equal('POST');
@@ -143,7 +143,7 @@ describe('ParseOfflineRequests', function () {
 
 	describe('#transactionOutputAfter', function () {
 
-		var LSK = lisk.api();
+		var LSK = caritas.api();
 
 		it('should calculate crypto for accounts/open instead of using the API', function () {
 			var transformAnswer = {

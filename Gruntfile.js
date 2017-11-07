@@ -2,24 +2,16 @@ module.exports = function (grunt) {
 	require('load-grunt-tasks')(grunt);
 
 	grunt.initConfig({
-		eslint: {
-			options: {
-				configFile: 'eslint_ecma5.json',
-				reset: true
-			},
-			target: ['lib/**', 'test/**', '!test/mocha.opts', 'Gruntfile.js', 'index.js']
-		},
-
 		pkg: grunt.file.readJSON('package.json'),
 
 		browserify: {
 			js: {
 				src: './index.js',
-				dest: './dist/lisk-js.js'
+				dest: './dist/caritas-js.js'
 			},
 			options: {
 				browserifyOptions: {
-					standalone: 'lisk'
+					standalone: 'caritas'
 				}
 			}
 		},
@@ -47,7 +39,7 @@ module.exports = function (grunt) {
 			},
 			myTarget: {
 				files: {
-					'dist/lisk-js.min.js': ['dist/lisk-js.js']
+					'dist/caritas-js.min.js': ['dist/caritas-js.js']
 				}
 			}
 		},
@@ -68,7 +60,6 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-force');
 	grunt.loadNpmTasks('grunt-coveralls');
 	grunt.registerTask('jenkins', ['exec:coverageSingle', 'coveralls']);
-	grunt.registerTask('eslint-ci', ['eslint']);
 	grunt.registerTask('default', [
 		'force:on',
 		'browserify',

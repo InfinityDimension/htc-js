@@ -1,12 +1,12 @@
 if (typeof module !== 'undefined' && module.exports) {
 	var slots = require('../../lib/time/slots');
 	var common = require('../common');
-	var lisk = common.lisk;
+	var caritas = common.caritas;
 }
 
 describe('signature.js', function () {
 
-	var signature = lisk.signature;
+	var signature = caritas.signature;
 
 	it('should be ok', function () {
 		(signature).should.be.ok;
