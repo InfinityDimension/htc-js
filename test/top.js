@@ -19,6 +19,6 @@ describe('top', function () {
 	importTest('time', './time/slots.js');
 
 	importTest('transactions newCrypto', './transactions/crypto/index.js');
-	importTest('api', './api/liskApi.js');
+	importTest('api', './api/CaritasAPI.js');
 	importTest('api', './api/parseTransaction.js');
 });

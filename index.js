@@ -12,7 +12,7 @@ naclFactory.instantiate(function (nacl) {
 	naclInstance = nacl;
 });
 
-lisk = {
+caritas = {
 	crypto : require('./lib/transactions/crypto.js'),
 	dapp: require('./lib/transactions/dapp.js'),
 	delegate : require('./lib/transactions/delegate.js'),
@@ -21,8 +21,8 @@ lisk = {
 	transaction : require('./lib/transactions/transaction.js'),
 	transfer: require('./lib/transactions/transfer'),
 	vote : require('./lib/transactions/vote.js'),
-	api: require('./lib/api/liskApi'),
+	api: require('./lib/api/CaritasAPI'),
 	slots: require('./lib/time/slots')
 };
 
-module.exports = lisk;
+module.exports = caritas;
