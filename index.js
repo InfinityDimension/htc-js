@@ -1,9 +1,3 @@
-/**
- * Index module comprising all submodules of lisk-js.
- * @module lisk
- * @main lisk
- */
-
 global.Buffer = global.Buffer || require('buffer').Buffer;
 global.naclFactory = require('js-nacl');
 
@@ -20,9 +14,7 @@ caritas = {
 	signature : require('./lib/transactions/signature.js'),
 	transaction : require('./lib/transactions/transaction.js'),
 	transfer: require('./lib/transactions/transfer'),
-	vote : require('./lib/transactions/vote.js'),
-	api: require('./lib/api/CaritasAPI'),
-	slots: require('./lib/time/slots')
+	vote : require('./lib/transactions/vote.js')
 };
 
 module.exports = caritas;
