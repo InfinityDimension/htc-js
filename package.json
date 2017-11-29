@@ -4,8 +4,6 @@
   "description": "JavaScript library for sending caritas transactions from the client or server",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha",
-    "jenkins": "./node_modules/.bin/grunt jenkins --verbose"
   },
   "repository": {
     "type": "git",
