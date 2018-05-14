@@ -1,4 +1,4 @@
-# <a href="https://github.com/HealthTrace/htc-js">Shift-JS</a>
+# <a href="https://github.com/HealthTrace/htc-js">Htc-JS</a>
 
 Shift JS is a JavaScript library for [Htc - the cryptocurrency and blockchain application platform]
 (https://github.com/HealthTrace/htc-core). It allows developers to create offline transactions and broadcast
