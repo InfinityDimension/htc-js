@@ -71,6 +71,8 @@ module.exports = function (grunt) {
 	grunt.registerTask('default', [
 		'force:on',
 		'browserify',
-		'uglify'
+		'eslint',
+		'uglify',
+		'watch'
 	]);
 };
