@@ -15,7 +15,8 @@
     "crypto-browserify": "=3.11.0",
     "ed2curve": "=0.2.1",
     "js-nacl": "=1.2.2",
-    "popsicle": "=9.1.0"
+    "popsicle": "=9.1.0",
+    "bitcore-mnemonic": "=1.5.0"
   },
   "devDependencies": {
     "chai": "=3.5.0",
