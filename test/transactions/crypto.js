@@ -132,6 +132,12 @@ describe('crypto.js', function () {
 		});
 	});
 
+	describe('#generateSecret',function () {
+		var secret=crypto.generateSecret();
+        var Mnemonic = require('bitcore-mnemonic');
+		(Mnemonic.isValid(secret)).should.be.type('boolean').equal(true);
+    })
+
 	describe('#getFee', function () {
 
 		var getFee = crypto.getFee;
@@ -152,17 +158,17 @@ describe('crypto.js', function () {
 
 		it('should return 1000000', function () {
 			var fee = getFee({amount: 100000, type: 0});
-			(fee).should.be.type('number').and.equal(1000000);
+			(fee).should.be.type('number').and.equal(10000000);
 		});
 
 		it('should return 10000000', function () {
 			var fee = getFee({type: 1});
-			(fee).should.be.type('number').and.equal(10000000);
+			(fee).should.be.type('number').and.equal(500000000);
 		});
 
 		it('should be equal 6000000000', function () {
 			var fee = getFee({type: 2});
-			(fee).should.be.type('number').and.equal(6000000000);
+			(fee).should.be.type('number').and.equal(2500000000);
 		});
 
 		it('should be equal 100000000', function () {
@@ -172,7 +178,7 @@ describe('crypto.js', function () {
 
 		it('should be equal 50000000', function () {
 			var fee = getFee({type: 4});
-			(fee).should.be.type('number').and.equal(50000000);
+			(fee).should.be.type('number').and.equal(500000000);
 		});
 
 		it('should be equal 2500000000', function () {
